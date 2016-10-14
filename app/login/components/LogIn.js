@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 // API
-import { logIn } from '../api/logIn';
+import { logIn } from '../api/user';
 
 class LogIn extends React.Component {
     constructor() {

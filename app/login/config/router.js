@@ -6,6 +6,7 @@ var {Route, Router, IndexRoute, browserHistory} = require('react-router');
 var Main = require('../components/Main');
 var LogIn = require('../components/LogIn');
 var ForgotPW = require('../components/ForgotPw');
+var Register = require('../components/Register');
 
 // Routes
 var routes = (
@@ -14,6 +15,7 @@ var routes = (
             <IndexRoute component={LogIn} />
             <Route path='/app/login' header='Log In' component={LogIn} />
             <Route path='/app/login/forgotten' header='Forgotten Password' component={ForgotPW} />
+            <Route path='/app/register' header='Register' component={Register} />
         </Route>
     </Router>
 );

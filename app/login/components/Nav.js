@@ -27,6 +27,9 @@ class Nav extends React.Component {
                             <li>
                                 <Link to="/app/login/forgotten" activeClassName="active">Forgotten Password</Link>
                             </li>
+                            <li>
+                                <Link to="/app/register" activeClassName="active">Register</Link>
+                            </li>
                         </ul>
                     
                     </div>
