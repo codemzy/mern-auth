@@ -1,9 +1,10 @@
 {
-  "name": "auth-api-node-mongodb-passport-jwt",
+  "name": "auth-mern-jwt",
   "version": "1.0.0",
-  "description": "Authentication API with Node, MongoDB, Passport, Passport-JWT",
-  "main": "server.js",
+  "description": "Full Stack Auth with MERN and JWT Tokens",
+  "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "mongo": "mongod --bind_ip=$IP --dbpath=data --nojournal --rest \"$@\""
   },

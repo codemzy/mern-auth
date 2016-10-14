@@ -7,9 +7,7 @@
     ------------------------------------------------------------------------------ 
 
 
-Backend Authentication API with NodeJS
-Removed Mongoose and just using MongoDB
-// For Mongoose version see https://github.com/codemzy/nodejs-authentication-jwt
+Full Stack Auth with MERN and JWT Tokens
 
 Using:
 
