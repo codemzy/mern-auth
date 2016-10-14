@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 // API
-// import { logIn } from '../api/logIn';
+import { register } from '../api/user';
 
 class Register extends React.Component {
     constructor() {
@@ -46,17 +45,13 @@ class Register extends React.Component {
             this.refs.email.value = '';
             this.refs.password.value = '';
             this.refs.confirm.value = '';
-            // clear errors
-            this.setState({
-                errors: {}
-            });
-            // send the log in data
-            // logIn(email, password)
-            //     .then((response) => {
-            //         console.log("success", response);
-            //     }, (error) => {
-            //         console.log("Error logging in");
-            //     });
+            // send the registration data
+            register(email, password)
+                .then((response) => {
+                    console.log("success", response);
+                }, (error) => {
+                    console.log("Error logging in");
+                });
         } 
     }
     
