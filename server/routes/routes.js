@@ -34,7 +34,7 @@ module.exports = function (app) {
     
     // USER ROUTES
     const userRoutes = require('./user_routes');
-    app.use('/user', userRoutes);
+    app.use('/api/user', userRoutes);
     
     // PROTECTED ROUTES
     // protected route
