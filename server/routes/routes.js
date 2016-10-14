@@ -19,6 +19,19 @@ module.exports = function (app) {
     // allow requests from cross origin
     // app.use(cors(corsOptions));
     
+    // ---------- VIEWS -------------
+    
+    // INDEX ROUTES
+    app.get('/', function(req, res) {
+        res.sendFile(process.cwd() + '/public/html/index.html');
+    });
+    
+    // REACT ROUTES
+    const appRoutes = require('./app_routes');
+    app.use('/app', appRoutes);
+    
+    // ---------- API -------------
+    
     // USER ROUTES
     const userRoutes = require('./user_routes');
     app.use('/user', userRoutes);
