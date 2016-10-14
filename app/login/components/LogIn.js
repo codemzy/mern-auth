@@ -71,7 +71,7 @@ class LogIn extends React.Component {
                         <input className="btn btn-yellow btn-block" type="submit" value="Log In" />
                     </div>
                 </form>
-                <p><small><Link to="/login/forgotten" activeClassName="active">Forgot your password?</Link></small></p>
+                <p><small><Link to="/app/login/forgotten" activeClassName="active">Forgot your password?</Link></small></p>
                 </div>
             </div>
         );

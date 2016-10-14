@@ -15,17 +15,17 @@ class Nav extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                       </button>
-                      <IndexLink to="/" className="navbar-brand" activeClassName="active">TBT</IndexLink>
+                      <IndexLink to="/" className="navbar-brand" activeClassName="active">My App</IndexLink>
                     </div>
                     
                     <div className="collapse navbar-collapse" id="menu-collapse">
                     
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/login" activeClassName="active">Log In</Link>
+                                <Link to="/app/login" activeClassName="active">Log In</Link>
                             </li>
                             <li>
-                                <Link to="/login/forgotten" activeClassName="active">Forgotten Password</Link>
+                                <Link to="/app/login/forgotten" activeClassName="active">Forgotten Password</Link>
                             </li>
                         </ul>
                     

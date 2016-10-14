@@ -10,9 +10,10 @@ var ForgotPW = require('../components/ForgotPw');
 // Routes
 var routes = (
     <Router history={browserHistory}> 
-        <Route path="/login" component={Main}>
+        <Route path="/app" component={Main}>
             <IndexRoute component={LogIn} />
-            <Route path='/login/forgotten' header='Forgotten Password' component={ForgotPW} />
+            <Route path='/app/login' header='Log In' component={LogIn} />
+            <Route path='/app/login/forgotten' header='Forgotten Password' component={ForgotPW} />
         </Route>
     </Router>
 );
