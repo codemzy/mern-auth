@@ -50,7 +50,7 @@ class Register extends React.Component {
                 .then((response) => {
                     console.log("success", response);
                 }, (error) => {
-                    console.log("Error with registration", error);
+                    console.log("Error with registration");
                 });
         } 
     }

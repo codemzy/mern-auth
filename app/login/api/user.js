@@ -18,6 +18,6 @@ export const register = function(email, password) {
             // response.data.token is the token value
             return response.data;
         }, (error) => {
-            throw new Error(error);
+            throw new Error("Registration failed");
         });
 };
