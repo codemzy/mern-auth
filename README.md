@@ -9,15 +9,4 @@
 
 Full Stack Auth with MERN and JWT Tokens
 
-Using:
-
-    "bcrypt-nodejs": "~0.0.3",
-    "body-parser": "~1.15.2",
-    "dotenv": "~2.0.0",
-    "express": "~4.14.0",
-    "jwt-simple": "~0.5.0",
-    "mongodb": "~2.2.9",
-    "morgan": "~1.7.0",
-    "passport": "~0.3.2",
-    "passport-jwt": "~2.1.0",
-    "passport-local": "~1.0.0"
+Register an account, log in and log out.
