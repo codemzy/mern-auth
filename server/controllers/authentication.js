@@ -19,6 +19,10 @@ const validate = require('./validate');
 // get locked out functions
 const lockout = require('./lockout');
 
+
+// expiration for tokens and cookies
+const MAX_AGE = 1000 * 60 * 60 * 24 * 7; // 7 days
+
 // create token
 function tokenForUser(user) {
     const timestamp = new Date().getTime();
@@ -149,7 +153,9 @@ exports.signin = function(req, res, next) {
         });
     }
     // User has already had their email and password auth'd we just need to give them a token
-    res.send({ token: tokenForUser({ id: req.user._id }) });
+    const USER_TOKEN = tokenForUser({ id: req.user._id });
+    res.cookie('token', USER_TOKEN, { maxAge: MAX_AGE, secure: true });
+    res.send({ token: USER_TOKEN });
 };
 
 // TO DO VALIDATE EMAIL
