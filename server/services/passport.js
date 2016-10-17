@@ -87,7 +87,7 @@ const jwtOptions = {
     // // look in the header of the request for the token
     // jwtFromRequest: ExtractJwt.fromHeader('authorization'), // using cookies now instead
     // get the JWT from the secure httpOnly cookie
-    jwtFromRequest: cookieToken(),
+    jwtFromRequest: cookieToken,
     // decode with the secret
     secretOrKey: secret
 };
