@@ -43,7 +43,7 @@ exports.failedLogIn = function(ip, user, callback) {
     const FAIL_OBJ = { "time": NOW, "ip": ip };
     let lockObj = {
         lockedOut: false,
-        fails: user.lockOut.fails || []
+        fails: user.lockout ? user.lockOut.fails : []
     };
     // push this fail onto the fails array
     lockObj.fails.push(FAIL_OBJ);
