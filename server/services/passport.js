@@ -71,10 +71,23 @@ const localLogin = new LocalStrategy(localOptions, function(req, email, password
     
 });
 
+// extract the JWT from the cookie
+const cookieToken = function(req) {
+    var token = null;
+    if (req && req.cookies)
+    {
+        token = req.cookies['jwt'];
+    }
+    return token;
+};
+
+
 // Set up options for JWT strategy
 const jwtOptions = {
-    // look in the header of the request for the token
-    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    // // look in the header of the request for the token
+    // jwtFromRequest: ExtractJwt.fromHeader('authorization'), // using cookies now instead
+    // get the JWT from the secure httpOnly cookie
+    jwtFromRequest: cookieToken(),
     // decode with the secret
     secretOrKey: secret
 };

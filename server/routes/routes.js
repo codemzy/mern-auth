@@ -1,5 +1,7 @@
 'use strict';
 
+const cookieParser = require('cookie-parser');
+
 // const cors = require('cors');
 
 // cors setup 
@@ -8,6 +10,9 @@
 // };
 
 module.exports = function (app) {
+    
+    // use cookierParser
+    app.use(cookieParser());
 
     // services
     const passport = require('passport');
