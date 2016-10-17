@@ -154,7 +154,7 @@ exports.signin = function(req, res, next) {
     }
     // User has already had their email and password auth'd we just need to give them a token
     const USER_TOKEN = tokenForUser({ id: req.user._id });
-    res.cookie('token', USER_TOKEN, { maxAge: MAX_AGE, secure: true });
+    res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, secure: true });
     res.send({ token: USER_TOKEN });
 };
 
