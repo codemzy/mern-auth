@@ -7,7 +7,7 @@ require('../services/passport.js'); // this needs to be run but is not directly 
 
 // session false as we are not using cookies, using tokens
 const requireAuth = passport.authenticate('jwt', { session: false });
-const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect: '/app/login' });
+const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect: '/login' });
 
 // ROUTES -----------------------------------------------------
 
@@ -16,15 +16,13 @@ const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect
 //                                   failureRedirect: '/app/login' }));
 
 router.get('/', checkAuth, function(req, res) {
+    // TO DO APP app.html
     res.sendFile(process.cwd() + '/public/html/index.html');
 });
 
-router.get('/login', function(req, res) {
-    res.sendFile(process.cwd() + '/public/html/login.html');
-});
 
 router.get('/*', function(req, res) {
-    // TO DO
+    // TO DO APP app.html
     // for now just return app, in future, check auth etc
     res.sendFile(process.cwd() + '/public/html/login.html');
 });

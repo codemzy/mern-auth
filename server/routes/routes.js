@@ -32,8 +32,12 @@ module.exports = function (app) {
     });
     
     // REACT ROUTES
+    // app
     const appRoutes = require('./app_routes');
     app.use('/app', appRoutes);
+    // login
+    const loginRoutes = require('./login_routes');
+    app.use('/login', loginRoutes);
     
     // ---------- API -------------
     
