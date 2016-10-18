@@ -45,6 +45,8 @@ module.exports = function (app) {
     // protected route
     app.route('/protected')
         .get(requireAuth, function(req, res) {
+            console.log(req.user);
+            console.log(req.isAuthenticated());
             res.send({ message: 'Authenticated' });
         });
 };
