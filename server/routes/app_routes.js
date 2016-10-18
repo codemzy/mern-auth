@@ -6,7 +6,7 @@ const passport = require('passport');
 require('../services/passport.js'); // this needs to be run but is not directly referenced in this file
 
 // session false as we are not using cookies, using tokens
-const requireAuth = passport.authenticate('jwt', { session: false });
+// check if user is auth'd, if not redirect
 const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect: '/login' });
 
 // ROUTES -----------------------------------------------------
