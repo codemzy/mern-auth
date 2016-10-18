@@ -22,13 +22,13 @@ class Nav extends React.Component {
                     
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/login" activeClassName="active">Log In</Link>
+                                <Link to="/login" activeClassName="active">Log In</Link>
                             </li>
                             <li>
-                                <Link to="/app/login/forgotten" activeClassName="active">Forgotten Password</Link>
+                                <Link to="/login/forgotten" activeClassName="active">Forgotten Password</Link>
                             </li>
                             <li>
-                                <Link to="/app/register" activeClassName="active">Register</Link>
+                                <Link to="/login/register" activeClassName="active">Register</Link>
                             </li>
                         </ul>
                     
