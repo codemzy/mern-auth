@@ -9,9 +9,9 @@ import Home from '../components/Home';
 // Routes
 const routes = (
     <Router history={browserHistory}> 
-        <Route path="/" component={Main}>
+        <Route path="/app" component={Main}>
             <IndexRoute component={Home} />
-            <Route path='/home' header='Home' component={Home} />
+            <Route path='/app/home' header='Home' component={Home} />
         </Route>
     </Router>
 );
