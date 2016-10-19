@@ -35,5 +35,10 @@ router.get('/reset/:resetCode', Authentication.resetCheck);
 // take password data and set new password
 router.post('/password/reset', jsonParser, Authentication.resetpw);
 
+// USER INFO
+router.get('/info', requireAuth, function(req, res) {
+    res.json({ email: "test@test.com" });
+});
+
 
 module.exports = router;
