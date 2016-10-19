@@ -22,7 +22,7 @@ class Nav extends React.Component {
                     
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/home" activeClassName="active">Home</Link>
+                                <Link to="/app/home" activeClassName="active">Home</Link>
                             </li>
                         </ul>
                     
