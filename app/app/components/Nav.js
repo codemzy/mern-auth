@@ -15,14 +15,14 @@ class Nav extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                       </button>
-                      <IndexLink to="/app" className="navbar-brand" activeClassName="active">Home</IndexLink>
+                      <IndexLink to="/app" className="navbar-brand" activeClassName="active">App</IndexLink>
                     </div>
                     
                     <div className="collapse navbar-collapse" id="menu-collapse">
                     
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/home" activeClassName="active">Home</Link>
+                                <Link to="/app/about" activeClassName="active">About</Link>
                             </li>
                         </ul>
                     
