@@ -37,7 +37,7 @@ router.post('/password/reset', jsonParser, Authentication.resetpw);
 
 // USER INFO
 router.get('/info', requireAuth, function(req, res) {
-    res.json({ email: "test@test.com" });
+    res.json({ email: req.user.email, emailConfirmed: req.user.emailConfirmed });
 });
 
 
