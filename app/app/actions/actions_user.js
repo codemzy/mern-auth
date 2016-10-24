@@ -53,7 +53,7 @@ export function requestEmailCode() {
 // Send email confirm code to API
 export function confirmEmailCode(emailCode) {
     return function(dispatch) {
-        return axios.get('/verify/' + emailCode, {
+        return axios.get('/api/user/verify/' + emailCode, {
                 headers: { authorization: "csrf token TO DO??" }
         })
             .then((response) => {

@@ -7,7 +7,7 @@ export default function(state = INITIAL_STATE, action) {
         return action.payload;
     }
     if (action.type === EMAIL_CONFIRM) {
-        return { ...state, emailConfirmed: true, ecc: false };
+        return { ...state, emailConfirmed: true };
     }
     return state;
 }
