@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Load actions
 import { confirmEmailCode } from '../actions/actions_user';
+import { addError } from '../actions/actions_error';
 
 class EmailConfirm extends React.Component {
     
@@ -12,7 +13,7 @@ class EmailConfirm extends React.Component {
             .then((success) => {
                 this.context.router.push('/app/account');
             }, (error) => {
-                // TO DO ERROR ACTION AND COMPONENT?
+                this.props.dispatch(addError("Email confirmation code invalid", "danger"));
                 this.context.router.push('/app/account');
             });
     }
