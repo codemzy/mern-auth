@@ -184,7 +184,6 @@ exports.emailCode = function(req, res, next) {
         // Respond to request indicating the email confirm code was sent
         res.json({ message: 'Thank you. Please check your email.', code: 'es' });
     });
-    
 };
 
 exports.emailConfirm = function(req, res, next) {

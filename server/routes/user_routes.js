@@ -25,7 +25,7 @@ router.post('/signin', jsonParser, requireSignIn, Authentication.signin);
 
 // VERIFY EMAIL
 // request an email with an email confirm code to signed in user
-router.post('/confirm/email', jsonParser, requireAuth, Authentication.emailCode);
+router.get('/emailcode', requireAuth, Authentication.emailCode);
 // require user to be signed in to verify email address
 router.get('/verify/:emailCode', requireAuth, Authentication.emailConfirm);
     

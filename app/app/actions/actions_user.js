@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // action types
-import { FETCH_USER, REMOVE_USER } from './types';
+import { FETCH_USER, REMOVE_USER, EMAIL_CODE } from './types';
 
 // ----- ACTIONS ------
 
@@ -24,6 +24,23 @@ export function fetchUserInfo() {
                 dispatch({
                     type: FETCH_USER,
                     payload: response.data
+                });
+            })
+            .catch(() => {
+                throw new Error("User not found");
+            });
+    };
+}
+
+// Request email confirm code for user
+export function requestEmailCode() {
+    return function(dispatch) {
+        axios.get('/api/user/emailcode', {
+                headers: { authorization: "csrf token TO DO??" }
+        })
+            .then((response) => {
+                dispatch({
+                    type: EMAIL_CODE
                 });
             })
             .catch(() => {
