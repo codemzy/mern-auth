@@ -6,7 +6,8 @@ import { requestEmailCode } from '../actions/actions_user';
 
 class Account extends React.Component {
     
-    _requestEmailConfirm() {
+    _requestEmailConfirm(e) {
+        e.preventDefault();
         this.props.dispatch(requestEmailCode());
     }
     
