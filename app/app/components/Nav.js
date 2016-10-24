@@ -25,6 +25,12 @@ class Nav extends React.Component {
                                 <Link to="/app/about" activeClassName="active">About</Link>
                             </li>
                         </ul>
+                        
+                        <ul className="nav navbar-nav navbar-right">
+                            <li>
+                                <Link to="/app/account" activeClassName="active">Account</Link>
+                            </li>
+                        </ul>
                     
                     </div>
                 
