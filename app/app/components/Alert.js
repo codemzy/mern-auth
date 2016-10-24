@@ -3,11 +3,21 @@ import { connect } from 'react-redux';
 
 class Alert extends React.Component {
     render() {
-        if (this.props.alerts) {
+        if (this.props.alerts.type) {
+            // set the header for the alert
+            let alertHeader = "Oooops!";
+            if (this.props.alerts.type === "email") {
+                alertHeader = "Check your email.";
+            }
+            // the colour of the alert
+            let alertClass = "danger";
+            if (this.props.alerts.type === "email") {
+                alertClass = "info";
+            }
             return (
-                <div className={"alert alert-dismissible alert-" + this.props.alerts.type }>
+                <div className={"alert alert-dismissible alert-" + alertClass }>
                   <button type="button" className="close" data-dismiss="alert">&times;</button>
-                  <strong>{this.props.alerts.title}</strong>{this.props.alerts.message}
+                  <strong>{alertHeader}</strong> {this.props.alerts.message}
                 </div>
             );
         } else {
