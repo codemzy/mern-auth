@@ -15,11 +15,6 @@ class Account extends React.Component {
     }
     
     render() {
-        let message = () => {
-            if (this.props.user.ecc) {
-                return <div className="alert alert-info"><strong>Check your email.</strong> We have sent you an email confirm code, click the link to confirm your email address.</div>;
-            }
-        };
         let confirmEmail = () => {
             if (!this.props.user.emailConfirmed) {
                 return (
@@ -35,7 +30,6 @@ class Account extends React.Component {
         return (
             <div className="container text-center">
                 <Alert />
-                {message()}
                 <p>You are logged in as...</p>
                 <h1>{this.props.user.email}</h1>
                 {confirmEmail()}
