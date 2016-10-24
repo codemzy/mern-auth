@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Load actions
 import { confirmEmailCode } from '../actions/actions_user';
-import { addAlert } from '../actions/actions_alert';
+import { addAlert, removeAlert } from '../actions/actions_alert';
 
 class EmailConfirm extends React.Component {
     
@@ -11,6 +11,7 @@ class EmailConfirm extends React.Component {
         const ECC = this.props.routeParams.emailCode;
         this.props.dispatch(confirmEmailCode(ECC))
             .then((success) => {
+                this.props.dispatch(removeAlert());
                 this.context.router.push('/app/account');
             }, (error) => {
                 this.props.dispatch(addAlert("Email confirmation code invalid, try again.", "error"));
