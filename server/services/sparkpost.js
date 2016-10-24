@@ -37,6 +37,34 @@ exports.welcomeEmail = function (email, emailConfirmCode) {
 
 };
 
+exports.confirmEmail = function (email, emailConfirmCode) {
+ 
+    sp.transmissions.send({
+      transmissionBody: {
+        content: {
+          from: APP_EMAIL,
+          subject: APP_NAME + ': Confirm your email',
+          html:'<html><body><p>Hello!</p>\
+          <p>Please click the link below to confirm your email address and fully activate your account.</p>\
+          <p>' + emailConfirmCode + '</p>\
+          <p>This email confirmation link will expire in 24 hours.</p>\
+          <p>Have any questions? Just send us an email! We\'re always here to help.</p>\
+          <p>Support at ' + APP_NAME + '</p>\
+          </body></html>'
+        },
+        recipients: [
+          {address: email}
+        ]
+      }
+    }, function(err, res) {
+      if (err) {
+        console.log('Whoops! Something went wrong with the confirmEmail');
+        console.log(err);
+      }
+    });
+
+};
+
 
 exports.forgotPasswordEmail = function (email, resetToken, callback) {
  

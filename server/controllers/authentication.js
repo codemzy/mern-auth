@@ -158,7 +158,35 @@ exports.signin = function(req, res, next) {
     res.send({ token: USER_TOKEN });
 };
 
-// TO DO VALIDATE EMAIL
+exports.emailCode = function(req, res, next) {
+    // user is signed in
+    const EMAIL = req.user.email;
+    // if email is already confirmed don't need to confirm again
+    if (req.user.emailConfirmed) {
+        return res.json({ message: 'Email confirmed', code: 'ec' });
+    }
+    // if the emailConfirmEmail has already been sent in last 10 mins
+    if (lockout.sentMailCheck('emailConfirmEmail', req.user.sentMail)) {
+        return res.json({ message: 'Thank you. Please check your email.', code: 'le' });
+    }
+    // create email confirm code
+    const emailConfirmCode = createLinkCode("ecc");
+    // so we can update the sentMail array
+    const IP = req.headers["x-forwarded-for"];
+    const sentMail = lockout.sentMailTracker(IP, 'emailConfirmEmail', req.user.sentMail);
+    // update the user in the DB
+    db.collection('users').updateOne({ email: EMAIL }, { $set: { "emailConfirmCode" : emailConfirmCode, "sentMail": sentMail } }, function(err, updated) {
+        if (err) {
+            return next(err);
+        }
+        // Send a email confirm code email
+        email.confirmEmail(EMAIL, emailConfirmCode);
+        // Respond to request indicating the email confirm code was sent
+        res.json({ message: 'Thank you. Please check your email.', code: 'es' });
+    });
+    
+};
+
 exports.emailConfirm = function(req, res, next) {
     const EMAIL_CODE = req.params.emailCode;
     // User is already signed in so we just need to check the emailToken matches their token
