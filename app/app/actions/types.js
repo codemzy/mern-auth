@@ -4,6 +4,6 @@ export const REMOVE_USER = 'REMOVE_USER';
 export const EMAIL_CODE = 'EMAIL_CODE';
 export const EMAIL_CONFIRM = 'EMAIL_CONFIRM';
 
-// ERROR
-export const NEW_ERROR = 'NEW_ERROR';
-export const REMOVE_ERROR = 'REMOVE_ERROR';
+// ALERT
+export const NEW_ALERT = 'NEW_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';

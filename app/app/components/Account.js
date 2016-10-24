@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// components
+import Alert from './Alert.js';
+
 // Load actions
 import { requestEmailCode } from '../actions/actions_user';
 
@@ -31,6 +34,7 @@ class Account extends React.Component {
         };
         return (
             <div className="container text-center">
+                <Alert />
                 {message()}
                 <p>You are logged in as...</p>
                 <h1>{this.props.user.email}</h1>
