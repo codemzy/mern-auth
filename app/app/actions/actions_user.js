@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // action types
-import { FETCH_USER, REMOVE_USER, EMAIL_CODE } from './types';
+import { FETCH_USER, REMOVE_USER, EMAIL_CODE, EMAIL_CONFIRM } from './types';
 
 // ----- ACTIONS ------
 
@@ -44,7 +44,24 @@ export function requestEmailCode() {
                 });
             })
             .catch(() => {
-                throw new Error("User not found");
+                throw new Error("Error");
+            });
+    };
+}
+
+// Send email confirm code to API
+export function confirmEmailCode(emailCode) {
+    return function(dispatch) {
+        axios.get('/verify/' + emailCode, {
+                headers: { authorization: "csrf token TO DO??" }
+        })
+            .then((response) => {
+                dispatch({
+                    type: EMAIL_CONFIRM
+                });
+            })
+            .catch(() => {
+                throw new Error("Invalid token");
             });
     };
 }
