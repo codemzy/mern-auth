@@ -8,7 +8,13 @@ class EmailConfirm extends React.Component {
     
     componentDidMount() {
         const ECC = this.props.routeParams.emailCode;
-        this.props.dispatch(confirmEmailCode(ECC));
+        this.props.dispatch(confirmEmailCode(ECC))
+            .then((success) => {
+                this.context.router.push('/app/account');
+            }, (error) => {
+                // TO DO ERROR ACTION AND COMPONENT?
+                this.context.router.push('/app/account');
+            });
     }
     
     render() {
@@ -20,5 +26,9 @@ class EmailConfirm extends React.Component {
         );
     }
 }
+
+EmailConfirm.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect()(EmailConfirm);
