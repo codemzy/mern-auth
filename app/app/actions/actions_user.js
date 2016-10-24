@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // action types
-import { FETCH_USER, REMOVE_USER, EMAIL_CODE, EMAIL_CONFIRM } from './types';
+import { FETCH_USER, REMOVE_USER, EMAIL_CONFIRM, NEW_ALERT } from './types';
 
 // ----- ACTIONS ------
 
@@ -40,7 +40,8 @@ export function requestEmailCode() {
         })
             .then((response) => {
                 dispatch({
-                    type: EMAIL_CODE
+                    type: NEW_ALERT,
+                    payload: { message: "We have sent you an email confirm code, click the link to confirm your email address.", type: "email" }
                 });
             })
             .catch(() => {

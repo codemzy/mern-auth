@@ -6,9 +6,6 @@ export default function(state = INITIAL_STATE, action) {
     if (action.type === FETCH_USER) {
         return action.payload;
     }
-    if (action.type === EMAIL_CODE) {
-        return { ...state, ecc: true };
-    }
     if (action.type === EMAIL_CONFIRM) {
         return { ...state, emailConfirmed: true, ecc: false };
     }
