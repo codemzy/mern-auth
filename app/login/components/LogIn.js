@@ -29,7 +29,7 @@ class LogIn extends React.Component {
             // send the log in data
             logIn(email, password)
                 .then((response) => {
-                    window.location.reload();
+                    window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
                     console.log("Error logging in");
                 });
