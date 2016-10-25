@@ -3,16 +3,24 @@ import axios from 'axios';
 // action types
 import { FETCH_USER, REMOVE_USER, EMAIL_CONFIRM, NEW_ALERT } from './types';
 
-// ----- ACTIONS ------
-
-// Remove user info from state
-export const removeUserInfo = () => {
-    return {
-        type: REMOVE_USER
-    };
-};
-
 // ----- THUNK ACTIONS ------
+
+// Log out user and remove user info from state
+export function logOutUser() {
+    return function(dispatch) {
+        return axios.post('/api/user/signout', {
+                headers: { authorization: "csrf token TO DO??" }
+        })
+            .then((response) => {
+                dispatch({
+                    type: REMOVE_USER
+                });
+            })
+            .catch(() => {
+                throw new Error("User not found");
+            });
+    };
+}
 
 // Fetch user info to state
 export function fetchUserInfo() {
