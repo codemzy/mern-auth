@@ -341,7 +341,9 @@ exports.resetpw = function(req, res, next) {
                     return next(err);
                 }
                 // Respond to request with a token now password is updated user is logged in
-                return res.json({ token: tokenForUser({ id: existingUser._id }) });
+                const USER_TOKEN = tokenForUser({ id: existingUser._id });
+                res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                res.send({ success: "You are now logged in" });
             });
         });
     });
