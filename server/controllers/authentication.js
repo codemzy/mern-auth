@@ -164,7 +164,7 @@ exports.signout = function(req, res, next) {
     // Clear the user object on the req, the cookie and redirect
     req.logout();
     res.clearCookie('jwt', { httpOnly: true, secure: true });
-    res.redirect('/');
+    res.send({ success: "You are now logged out" });
 };
 
 exports.emailCode = function(req, res, next) {
