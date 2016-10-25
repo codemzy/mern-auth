@@ -10,7 +10,7 @@ class LogOut extends React.Component {
         e.preventDefault();
         this.props.dispatch(logOutUser())
             .then((response) => {
-                window.location.reload();
+                window.location = window.location.protocol + "//" + window.location.hostname + "/";
             });
     }
     
