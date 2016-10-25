@@ -159,11 +159,9 @@ exports.signin = function(req, res, next) {
 };
 
 exports.signout = function(req, res, next) {
-    // User has already had their email and password auth'd we need to clear the user object on the req
+    // Clear the user object on the req, the cookie and redirect
     req.logout();
-    // Clear the cookie
     res.clearCookie('jwt', { httpOnly: true, secure: true });
-    // Redirect to the base url
     res.redirect('/');
 };
 
