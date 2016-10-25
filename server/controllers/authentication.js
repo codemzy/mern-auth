@@ -158,6 +158,15 @@ exports.signin = function(req, res, next) {
     res.send({ token: USER_TOKEN });
 };
 
+exports.signout = function(req, res, next) {
+    // User has already had their email and password auth'd we need to clear the user object on the req
+    req.logout();
+    // Clear the cookie
+    res.clearCookie('jwt', { httpOnly: true, secure: true });
+    // Redirect to the base url
+    res.redirect('/');
+};
+
 exports.emailCode = function(req, res, next) {
     // user is signed in
     const EMAIL = req.user.email;

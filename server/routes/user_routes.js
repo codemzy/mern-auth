@@ -23,6 +23,10 @@ router.post('/signup', jsonParser, Authentication.signup);
 // take user data and check user exists in DB
 router.post('/signin', jsonParser, requireSignIn, Authentication.signin);
 
+// SIGN OUT
+// delete cookie and user object on req and redirect user
+router.post('/signout', jsonParser, requireAuth, Authentication.signout);
+
 // VERIFY EMAIL
 // request an email with an email confirm code to signed in user
 router.get('/emailcode', requireAuth, Authentication.emailCode);
