@@ -23,7 +23,7 @@ class LogIn extends React.Component {
         let email = this.refs.email.value;
         let password = this.refs.password.value;
         // handle the form
-        if (this._emailValid(email) && password.length > 5) {
+        if (this._emailValid(email) && password.length > 7) {
             this.refs.email.value = '';
             this.refs.password.value = '';
             // send the log in data

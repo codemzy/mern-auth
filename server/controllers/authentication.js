@@ -137,7 +137,9 @@ exports.signup = function(req, res, next) {
                 // Send a welcome email
                 email.welcomeEmail(EMAIL, emailConfirmCode);
                 // Respond to request indicating the user was created
-                res.json({ token: tokenForUser({ id: result.insertedId }) });
+                const USER_TOKEN = tokenForUser({ id: result.insertedId });
+                res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                res.send({ success: "You are now registered" });
             });
         });
     });
@@ -155,7 +157,7 @@ exports.signin = function(req, res, next) {
     // User has already had their email and password auth'd we just need to give them a token
     const USER_TOKEN = tokenForUser({ id: req.user._id });
     res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
-    res.send({ token: USER_TOKEN });
+    res.send({ success: "You are now logged in" });
 };
 
 exports.signout = function(req, res, next) {
