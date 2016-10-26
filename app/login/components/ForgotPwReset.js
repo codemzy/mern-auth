@@ -4,12 +4,16 @@ import { Link } from 'react-router';
 // API
 import { resetPassword } from '../api/user';
 
+// components
+import Loading from './Loading.js';
+
 class ResetPw extends React.Component {
     constructor() {
         super();
         this.state = {
             errors: {},
-            tokenValid: true
+            tokenValid: true,
+            loading: false
         };
     }
     
@@ -62,6 +66,7 @@ class ResetPw extends React.Component {
         });
         // if no errors then handle the form
         if (!ERRORS.email && !ERRORS.password && !ERRORS.confirm) {
+            this.setState({ loading: true });
             // clear form fields
             this.refs.email.value = '';
             this.refs.password.value = '';
@@ -71,12 +76,17 @@ class ResetPw extends React.Component {
                 .then((response) => {
                     window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
-                    this.setState({ tokenValid: false });
+                    this.setState({ tokenValid: false, loading: false });
                 });
         } 
     }
     
     render() {
+        // if loading response show loading screen
+        if (this.state.loading) {
+            return <Loading message="Setting up your new password" />;
+        }
+        // otherwise show the form
         let alertMessage = this.state.tokenValid ? false : <div className="alert alert-dismissible alert-danger">Your reset link has expired, please request a new reset link via the <Link to="/login/forgotten" className="alert-link">forgotten password form</Link>.</div> ;
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
