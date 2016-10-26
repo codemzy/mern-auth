@@ -3,11 +3,16 @@ import React from 'react';
 // API
 import { register } from '../api/user';
 
+// components
+import Loading from './Loading.js';
+
 class Register extends React.Component {
     constructor() {
         super();
         this.state = {
-            errors: {}
+            errors: {},
+            alertMessage: false,
+            loading: false
         };
     }
     
@@ -41,6 +46,7 @@ class Register extends React.Component {
         });
         // if no errors then handle the form
         if (!ERRORS.email && !ERRORS.password && !ERRORS.confirm) {
+            this.setState({ loading: true });
             // clear form fields
             this.refs.email.value = '';
             this.refs.password.value = '';
@@ -50,12 +56,16 @@ class Register extends React.Component {
                 .then((response) => {
                     window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
+                    this.setState({ loading: false });
                     console.log("Error with registration");
                 });
         } 
     }
     
     render() {
+        if (this.state.loading) {
+            return <Loading message="Setting up your account" />;
+        }
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
