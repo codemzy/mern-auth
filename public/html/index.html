@@ -5,11 +5,66 @@
         <meta charset="UTF-8" />
         <title>MERN Auth - Home</title>
         <!--<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     
     <body>
-        <h1>Hello Mern Auth</h1>
-        <p>This will be the homepage, marketing page. No need for react?</p>
+        
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                    <a href="/" class="navbar-brand">App Name</a>
+                </div>
+                <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/login">Log In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h1>Hello Mern Auth</h1>
+                    <p>Simple full stack authentication built with Mongo, Node, Express and React, using modules such as PassportJS, PassportJWT and Redux.</p>
+                </div>
+            </div>
+        </div>
+
+                <div class="jumbotron text-center">
+                  <h1>Come on in...</h1>
+                  <p>Get started with MERN Auth by registering an account.</p>
+                  <p><a href="/login/register" class="btn btn-primary btn-lg">Register</a></p>
+                </div>
+
+            
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h2>It all starts with an account.</h2>
+                    <p>Register with your email address and pick a password.</p>
+                    <h2>It continues with a log in.</h2>
+                    <p>If you already have an account registered you can log right in.</p>
+                    <h2>An elephant never forgets.</h2>
+                    <p>But people do. You can request a password reset if this happens to you.</p>
+                    <h2>It ends with a goodbye.</h2>
+                    <p>Or a log out, in this case.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!--jquery and bootstrap-->
+        <script src="/js/common.bundle.js"></script>
     </body>
     
 </html>
