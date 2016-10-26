@@ -21,3 +21,13 @@ export const register = function(email, password) {
             throw new Error("Registration failed");
         });
 };
+
+// FORGOT PW
+export const forgotPassword = function(email) {
+    return axios.post('/api/user/forgotten', {email})
+        .then((response) => {
+            return response.data.message;
+        }, (error) => {
+            throw new Error("Invalid email");
+        });
+};
