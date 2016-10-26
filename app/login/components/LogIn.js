@@ -4,11 +4,15 @@ import { Link } from 'react-router';
 // API
 import { logIn } from '../api/user';
 
+// components
+import Loading from './Loading.js';
+
 class LogIn extends React.Component {
     constructor() {
         super();
         this.state = {
-            errors: {}
+            errors: {},
+            loading: false
         };
     }
     
@@ -35,6 +39,7 @@ class LogIn extends React.Component {
         });
         // if no errors then handle the form
         if (!ERRORS.email && !ERRORS.password) {
+            this.setState({ loading: true });
             this.refs.email.value = '';
             this.refs.password.value = '';
             // send the log in data
@@ -43,11 +48,16 @@ class LogIn extends React.Component {
                     window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
                     console.log("Error logging in");
+                    this.setState({ loading: false });
                 });
         }
     }
     
     render() {
+        // if loading data show loading screen
+        if (this.state.loading) {
+            return <Loading message="Logging in" />;
+        }
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         return (
