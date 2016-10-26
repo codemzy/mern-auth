@@ -72,7 +72,7 @@ class ResetPw extends React.Component {
     }
     
     render() {
-        let alertMessage = this.state.tokenValid ? false : <div className="alert alert-dismissible alert-danger">Your reset link has expired, please request a new reset link via the <Link to="/app/login/forgotten" className="alert-link">forgotten password form</Link>.</div> ;
+        let alertMessage = this.state.tokenValid ? false : <div className="alert alert-dismissible alert-danger">Your reset link has expired, please request a new reset link via the <Link to="/login/forgotten" className="alert-link">forgotten password form</Link>.</div> ;
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
