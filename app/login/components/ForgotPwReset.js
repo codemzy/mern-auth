@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 // API
-import {  } from '../api/user';
+import { resetPassword } from '../api/user';
 
 class ResetPw extends React.Component {
     constructor() {
@@ -67,7 +67,12 @@ class ResetPw extends React.Component {
             this.refs.password.value = '';
             this.refs.confirm.value = '';
             // send the reset pw data
-
+            resetPassword(email, password, this.props.routeParams.token)
+                .then((response) => {
+                    window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
+                }, (error) => {
+                    this.setState({ tokenValid: false });
+                });
         } 
     }
     
