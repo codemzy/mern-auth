@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // components
 import Alert from './Alert.js';
 import LogOut from './LogOut.js';
+import Loading from './Loading.js';
 
 // Load actions
 import { requestEmailCode } from '../actions/actions_user';
@@ -16,6 +17,10 @@ class Account extends React.Component {
     }
     
     render() {
+        if (!this.props.user.email) {
+            // if no user info yet, return loading
+            return <Loading message="Loading your account information" />;
+        }
         let confirmEmail = () => {
             if (!this.props.user.emailConfirmed) {
                 return (
