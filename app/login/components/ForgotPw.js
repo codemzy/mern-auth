@@ -3,12 +3,16 @@ var React = require('react');
 // API
 import { forgotPassword } from '../api/user';
 
+// components
+import Loading from './Loading.js';
+
 class ForgotPw extends React.Component {
     constructor() {
         super();
         this.state = {
             errors: {},
-            alertMessage: false
+            alertMessage: false,
+            loading: false
         };
     }
     
@@ -31,6 +35,7 @@ class ForgotPw extends React.Component {
         });
         // if no errors then handle the form
         if (!ERRORS.email) {
+            this.setState({ loading: true });
             // clear form fields
             this.refs.email.value = '';
             // send the email to forgot password
@@ -38,13 +43,17 @@ class ForgotPw extends React.Component {
                 .then((response) => {
                     console.log("success", response);
                     this.setState({
-                        alertMessage: "We have emailed you instructions to reset your password, please check your email."
+                        alertMessage: "We have emailed you instructions to reset your password, please check your email.",
+                        loading: false
                     });
                 });
         } 
     }
     
     render() {
+        if (this.state.loading) {
+            return <Loading message="Requesting a new password" />;
+        }
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let alertMessage = this.state.alertMessage ? <div className="alert alert-dismissible alert-info">{this.state.alertMessage}</div>: false ;
         return (
