@@ -22,8 +22,19 @@ class LogIn extends React.Component {
         e.preventDefault();
         let email = this.refs.email.value;
         let password = this.refs.password.value;
-        // handle the form
-        if (this._emailValid(email) && password.length > 7) {
+        // check for errors in form
+        const ERRORS = {};
+        if (!email || !this._emailValid(email)) {
+            ERRORS.email = "You need to enter a valid email address";
+        }
+        if (!password || password.length < 8) {
+            ERRORS.password = "Enter a password of at least 8 characters";
+        }
+        this.setState({
+            errors: ERRORS
+        });
+        // if no errors then handle the form
+        if (!ERRORS.email && !ERRORS.password) {
             this.refs.email.value = '';
             this.refs.password.value = '';
             // send the log in data
@@ -33,18 +44,6 @@ class LogIn extends React.Component {
                 }, (error) => {
                     console.log("Error logging in");
                 });
-        } else {
-            // check for errors
-            const ERRORS = {};
-            if (!email || !this._emailValid(email)) {
-                ERRORS.email = "You need to enter a valid email address";
-            }
-            if (!password || password.length < 8) {
-                ERRORS.password = "Enter a password of at least 8 characters";
-            }
-            this.setState({
-                errors: ERRORS
-            });
         }
     }
     
