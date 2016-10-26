@@ -31,3 +31,13 @@ export const forgotPassword = function(email) {
             throw new Error("Invalid email");
         });
 };
+
+// RESET PW
+export const resetPassword = function(email, password, reset) {
+    return axios.post('/api/user/password/reset', {email, password, reset})
+        .then((response) => {
+            return response.data;
+        }, (error) => {
+            throw new Error("Reset failed");
+        });
+};
