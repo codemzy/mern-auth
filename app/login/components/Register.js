@@ -56,8 +56,10 @@ class Register extends React.Component {
                 .then((response) => {
                     window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
-                    this.setState({ loading: false });
-                    console.log("Error with registration");
+                    this.setState({ 
+                        loading: false,
+                        alertMessage: "Sorry, there was a problem registering your account. Please check if you already have an account with that email, and that your email is valid before trying again. If you're still having problems please contact our support team.",
+                    });
                 });
         } 
     }
@@ -69,9 +71,11 @@ class Register extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
+        let alertMessage = this.state.alertMessage ? <div className="alert alert-dismissible alert-danger">{this.state.alertMessage}</div>: false ;
         return (
             <div className="container">
                 <div className="col-md-6 col-md-offset-3">
+                    {alertMessage}
                     <h1 className="page-title">Register</h1>
                     <form onSubmit={this._handleFormSubmit.bind(this)}>
                         <div className="form-group">
