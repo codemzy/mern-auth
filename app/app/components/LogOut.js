@@ -4,10 +4,20 @@ import { connect } from 'react-redux';
 // Load actions
 import { logOutUser } from '../actions/actions_user';
 
+// components
+import Loading from './Loading.js';
+
 class LogOut extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            loading: false
+        };
+    }
     
     _handleLogOut(e) {
         e.preventDefault();
+        this.setState({ loading: true });
         this.props.dispatch(logOutUser())
             .then((response) => {
                 window.location = window.location.protocol + "//" + window.location.hostname + "/";
@@ -15,6 +25,9 @@ class LogOut extends React.Component {
     }
     
     render() {
+        if (this.state.loading) {
+            return <div className="well"><Loading message="Logging out" /></div>;
+        }
         return (
             <div className="well">
                 <h3>Done what you came for?</h3>
@@ -23,9 +36,5 @@ class LogOut extends React.Component {
         );
     }
 }
-
-LogOut.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
 
 export default connect()(LogOut);
