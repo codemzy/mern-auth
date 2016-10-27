@@ -12,7 +12,7 @@ class Nav extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="col-md-6 col-md-offset-3">
-                    <ul className="nav nav-tabs nav-justified">
+                    <ul className="nav nav-tabs">
                       <li role="presentation">
                             <IndexLink to="/login" activeClassName="nav-active">Log In</IndexLink>
                       </li>
