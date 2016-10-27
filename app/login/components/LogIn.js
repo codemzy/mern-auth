@@ -61,7 +61,6 @@ class LogIn extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         return (
-            <div className="container">
             <div className="col-md-6 col-md-offset-3">
                 <h1 className="page-title">Log In</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
@@ -82,7 +81,6 @@ class LogIn extends React.Component {
                 </form>
                 <p><small><Link to="/login/forgotten" activeClassName="active">Forgot your password?</Link></small></p>
                 </div>
-            </div>
         );
     }
 }

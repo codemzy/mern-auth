@@ -57,23 +57,21 @@ class ForgotPw extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let alertMessage = this.state.alertMessage ? <div className="alert alert-dismissible alert-info">{this.state.alertMessage}</div>: false ;
         return (
-            <div className="container">
-                <div className="col-md-6 col-md-offset-3">
-                    {alertMessage}
-                    <h1>Forgotten Password</h1>
-                    <p>No worries. You can get access to your account by resetting your password via email. Enter the email address for your account below and we will send you instructions.</p>
-                    <form onSubmit={this._handleFormSubmit.bind(this)}>
-                        <div className="form-group">
-                          <label className="control-label" htmlFor="email">Email</label>
-                          <input className="form-control" id="email" type="text" ref="email" placeholder="you@youremail.com" required/>
-                          {emailError}
-                        </div>
-                        <div className="form-group">
-                            <br />
-                            <input className="btn btn-default btn-block" type="submit" value="New Password" />
-                        </div>
-                    </form>
-                </div>
+            <div className="col-md-6 col-md-offset-3">
+                {alertMessage}
+                <h1>Forgotten Password</h1>
+                <p>No worries. You can get access to your account by resetting your password via email. Enter the email address for your account below and we will send you instructions.</p>
+                <form onSubmit={this._handleFormSubmit.bind(this)}>
+                    <div className="form-group">
+                      <label className="control-label" htmlFor="email">Email</label>
+                      <input className="form-control" id="email" type="text" ref="email" placeholder="you@youremail.com" required/>
+                      {emailError}
+                    </div>
+                    <div className="form-group">
+                        <br />
+                        <input className="btn btn-default btn-block" type="submit" value="New Password" />
+                    </div>
+                </form>
             </div>
         );
     }

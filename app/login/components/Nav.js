@@ -10,7 +10,6 @@ class Nav extends React.Component {
     
     render() {
         return (
-            <div className="container-fluid">
                 <div className="col-md-6 col-md-offset-3">
                     <ul className="nav nav-tabs">
                       <li role="presentation">
@@ -24,7 +23,6 @@ class Nav extends React.Component {
                       </li>
                     </ul>
                 </div>
-            </div>
         );
     }
 }

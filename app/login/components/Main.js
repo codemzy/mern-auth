@@ -7,7 +7,9 @@ var MainComponent = (props) => {
     return (
         <div>
             <Nav />
-            {props.children}
+            <div className="container-fluid">
+                {props.children}
+            </div>
         </div>
     );
 };
