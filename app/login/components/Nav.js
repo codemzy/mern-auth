@@ -10,37 +10,21 @@ class Nav extends React.Component {
     
     render() {
         return (
-            <nav className="navbar navbar-default navbar-static-top">
-                <div className="col-md-10 col-md-offset-1">
-
-                    <div className="navbar-header">
-                      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false">
-                        <span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                      </button>
-                      <a href="#" className="navbar-brand" onClick={this._linkToIndex.bind(this)}>App Name</a>
-                    </div>
-                    
-                    <div className="collapse navbar-collapse" id="menu-collapse">
-                    
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <Link to="/login" activeClassName="active">Log In</Link>
-                            </li>
-                            <li>
-                                <Link to="/login/forgotten" activeClassName="active">Forgotten Password</Link>
-                            </li>
-                            <li>
-                                <Link to="/login/register" activeClassName="active">Register</Link>
-                            </li>
-                        </ul>
-                    
-                    </div>
-                
+            <div className="container-fluid">
+                <div className="col-md-6 col-md-offset-3">
+                    <ul className="nav nav-tabs nav-justified">
+                      <li role="presentation">
+                            <IndexLink to="/login" activeClassName="nav-active">Log In</IndexLink>
+                      </li>
+                      <li role="presentation">
+                            <Link to="/login/forgotten" activeClassName="nav-active">Forgotten Password</Link>
+                      </li>
+                      <li role="presentation">
+                            <Link to="/login/register" activeClassName="nav-active">Register</Link>
+                      </li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
         );
     }
 }

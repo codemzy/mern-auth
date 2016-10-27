@@ -1,0 +1,7 @@
+
+/*NAVIGATION*/
+
+.nav-tabs .nav-active {
+    border: 1px solid #ddd;
+    color: #333;
+}
