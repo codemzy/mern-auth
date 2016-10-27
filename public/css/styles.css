@@ -10,3 +10,8 @@
 .nav-tabs>li>a:focus {
     background-color: #fff;
 }
+
+.nav-tabs .nav-active:hover {
+    background-color: #eee;
+    border-bottom: 1px solid #eee;
+}
