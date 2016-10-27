@@ -349,3 +349,60 @@ exports.resetpw = function(req, res, next) {
     });
 };
 
+exports.changepw = function(req, res, next) {
+    // user is signed in
+    const EMAIL = req.user.email;
+    const OLD_PASSWORD = req.body.oldPassword;
+    const NEW_PASSWORD = req.body.newPassword;
+    // check if any data missing
+    if (!OLD_PASSWORD || !NEW_PASSWORD) {
+        return res.status(422).send({ error: 'You must provide email and new password'});
+    }
+    // check if passwords are strings
+    if (!validate.checkString(OLD_PASSWORD) && !validate.checkString(NEW_PASSWORD)) {
+        return res.status(422).send({ error: 'Password is not valid'});
+    }
+    // check if new password is long enough
+    if (!validate.checkPasswordLength(NEW_PASSWORD)) {
+        return res.status(422).send({ error: 'Password is too short'});
+    }
+    // check if passwords and email match each other
+    if (EMAIL === NEW_PASSWORD) {
+        return res.status(422).send({ error: 'Password must not match email address'});
+    }
+    // hash old password to see if it matches stored hashed password
+    hashPassword(OLD_PASSWORD, function(err, oldHash) {
+        if (err) {
+            return next(err);
+        }
+        if (oldHash === req.user.password) {
+            // set the permissions date change
+            const NOW = new Date().getTime();
+            let permissions = {
+                updatedAt: NOW
+            };
+            // hash the new password
+            hashPassword(NEW_PASSWORD, function(err, newHash) {
+                if (err) {
+                    return next(err);
+                }
+                // update to db
+                db.collection('users').updateOne({ email: EMAIL }, { $set: { "password" : newHash, "permissions": permissions } }, function(err, updated) {
+                    if (err) {
+                        return next(err);
+                    }
+                    // Respond to request with a new token now password is updated
+                    const USER_TOKEN = tokenForUser({ id: req.user._id });
+                    res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                    res.send({ success: "Password has been updated" });
+                });
+            });
+            
+        } else {
+            // password supplied doesnt match so return error
+            return res.status(422).send({ error: 'Incorrect existing password supplied'});
+        }
+    });
+};
+
+
