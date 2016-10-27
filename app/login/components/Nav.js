@@ -3,6 +3,11 @@ var {Link, IndexLink} = require('react-router');
 
 class Nav extends React.Component {
     
+    _linkToIndex(e) {
+        e.preventDefault();
+        window.location = window.location.protocol + "//" + window.location.hostname + "/";
+    }
+    
     render() {
         return (
             <nav className="navbar navbar-default navbar-static-top">
@@ -15,12 +20,12 @@ class Nav extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                       </button>
-                      <IndexLink to="/" className="navbar-brand" activeClassName="active">My App</IndexLink>
+                      <a href="#" className="navbar-brand" onClick={this._linkToIndex.bind(this)}>App Name</a>
                     </div>
                     
                     <div className="collapse navbar-collapse" id="menu-collapse">
                     
-                        <ul className="nav navbar-nav">
+                        <ul className="nav navbar-nav navbar-right">
                             <li>
                                 <Link to="/login" activeClassName="active">Log In</Link>
                             </li>
