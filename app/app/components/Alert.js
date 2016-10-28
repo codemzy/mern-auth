@@ -16,11 +16,15 @@ class Alert extends React.Component {
             let alertHeader = "Oooops!";
             if (this.props.alerts.type === "email") {
                 alertHeader = "Check your email.";
+            } else if (this.props.alerts.type === "success") {
+                alertHeader = "Success!";
             }
             // the colour of the alert
             let alertClass = "danger";
             if (this.props.alerts.type === "email") {
                 alertClass = "info";
+            } else if (this.props.alerts.type === "success") {
+                alertClass = "success";
             }
             return (
                 <div className={"alert alert-dismissible alert-" + alertClass }>
