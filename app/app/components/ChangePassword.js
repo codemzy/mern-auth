@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// components
+import Loading from './Loading.js';
+
 // Load actions
 import { changePassword } from '../actions/actions_user';
 import { addAlert } from '../actions/actions_alert';
