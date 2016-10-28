@@ -378,6 +378,14 @@ exports.changepw = function(req, res, next) {
             return next(err);
         }
         if (!isMatch) {
+            // keep track of fails to lock out if multiple fails
+            const IP = req.headers["x-forwarded-for"];
+            lockout.failedLogIn(IP, req.user, function(err, isLockedOut) {
+                if (err) {
+                    return next(err);
+                }
+                return;
+            });
             return res.status(422).send({ error: 'Incorrect existing password supplied'});
         } else {
             // set the permissions date change
