@@ -396,8 +396,8 @@ exports.changepw = function(req, res, next) {
                         return next(err);
                     }
                     // Respond to request with a new token now password is updated
-                    // const USER_TOKEN = tokenForUser({ id: req.user._id });
-                    // res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
+                    const USER_TOKEN = tokenForUser({ id: req.user._id });
+                    res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
                     res.send({ success: "Password has been updated" });
                 });
             });
