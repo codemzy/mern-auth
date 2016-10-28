@@ -43,7 +43,7 @@ router.post('/password/reset', jsonParser, Authentication.resetpw);
 
 // CHANGE PASSWORD
 // take the old password and new password and update the password
-router.post('/password/change', jsonParser, Authentication.changepw);
+router.post('/password/change', jsonParser, requireAuth, Authentication.changepw);
 
 // USER INFO
 router.get('/info', requireAuth, function(req, res) {
