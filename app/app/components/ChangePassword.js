@@ -49,7 +49,7 @@ class ChangePw extends React.Component {
                     this.setState({ loading: false });
                     this.props.dispatch(addAlert("Your password has been changed.", "success"));
                 }, (error) => {
-                    this.props.dispatch(addAlert("Your password could not be updated, please try later.", "success"));
+                    this.props.dispatch(addAlert("Your password could not be updated. " + error, "error"));
                     this.setState({ loading: false });
                 });
         } 

@@ -87,7 +87,6 @@ export const changePassword = function(oldPassword, newPassword) {
         .then((response) => {
             return response.data;
         }, (error) => {
-            console.log(error);
-            throw new Error("Change password failed");
+            throw new Error(error.response.data.error);
         });
 };
