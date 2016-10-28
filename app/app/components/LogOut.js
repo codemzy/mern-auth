@@ -31,7 +31,7 @@ class LogOut extends React.Component {
         return (
             <div className="well">
                 <h3>Done what you came for?</h3>
-                <button className="btn btn-default btn-lg" onClick={this._handleLogOut.bind(this)}><i className="fa fa-sign-out"></i> Log Out</button>
+                <button className="btn btn-danger btn-lg" onClick={this._handleLogOut.bind(this)}><i className="fa fa-sign-out"></i> Log Out</button>
             </div>
         );
     }
