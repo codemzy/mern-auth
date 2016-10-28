@@ -74,3 +74,20 @@ export function confirmEmailCode(emailCode) {
             });
     };
 }
+
+
+
+// ----- API ACTIONS (DONT CHANGE STATE) ------
+
+// Change password
+export const changePassword = function(oldPassword, newPassword) {
+    return axios.post('/api/user/password/change', {oldPassword, newPassword}, {
+                headers: { authorization: "csrf token TO DO??" }
+        })
+        .then((response) => {
+            return response.data;
+        }, (error) => {
+            console.log(error);
+            throw new Error("Change password failed");
+        });
+};
