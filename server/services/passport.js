@@ -108,6 +108,9 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
             // if the user is locked out
             if (user.lockOut && user.lockOut.lockedOut && lockout.checkLockOut(user.lockOut.time)) {
                 done(null, false);
+            } else if (user.permissions && payload.iat < user.permissions.updatedAt) {
+                // if the users permissions have changed since the token was issued
+                return done(null, false);
             } else {
                 // the user is not locked out and the token is valid
                 done(null, user);
