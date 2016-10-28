@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Load actions
 import { changePassword } from '../actions/actions_user';
+import { addAlert } from '../actions/actions_alert';
 
 class ChangePw extends React.Component {
     constructor() {
@@ -15,12 +16,6 @@ class ChangePw extends React.Component {
     
     _handleFormSubmit(e) {
         e.preventDefault();
-        if (!this._checkResetTime(this.props.routeParams.token)) {
-            this.setState({
-                tokenValid: false
-            });
-            return false;
-        }
         let oldPassword = this.refs.oldPassword.value;
         let newPassword = this.refs.newPassword.value;
         let confirm = this.refs.confirm.value;
@@ -52,8 +47,10 @@ class ChangePw extends React.Component {
             changePassword(oldPassword, newPassword)
                 .then((response) => {
                     this.setState({ loading: false });
+                    this.props.dispatch(addAlert("Your password has been changed.", "success"));
                 }, (error) => {
-                    this.setState({ tokenValid: false, loading: false });
+                    this.props.dispatch(addAlert("Your password could not be updated, please try later.", "success"));
+                    this.setState({ loading: false });
                 });
         } 
     }
@@ -69,7 +66,7 @@ class ChangePw extends React.Component {
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
         return (
             <div className="well">
-                <h1 className="page-title">Reset Your Password</h1>
+                <h2 className="page-title">Change Your Password</h2>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
                     <div className="form-group">
                       <label className="control-label" htmlFor="oldPassword">Current Password</label>

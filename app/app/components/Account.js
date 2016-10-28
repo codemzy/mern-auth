@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Alert from './Alert.js';
 import LogOut from './LogOut.js';
 import Loading from './Loading.js';
+import ChangePw from './ChangePassword.js';
 
 // Load actions
 import { requestEmailCode } from '../actions/actions_user';
@@ -39,6 +40,7 @@ class Account extends React.Component {
                 <p>You are logged in as...</p>
                 <h1>{this.props.user.email}</h1>
                 {confirmEmail()}
+                <ChangePw email={this.props.user.email} />
                 <LogOut />
             </div>
         );
