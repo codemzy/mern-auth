@@ -3,7 +3,7 @@ import axios from 'axios';
 // action types
 import { FETCH_USER, REMOVE_USER, EMAIL_CONFIRM, NEW_ALERT } from './types';
 
-// ----- THUNK ACTIONS ------
+// ----- THUNK ACTION CREATORS ------
 
 // Log out user and remove user info from state
 export function logOutUser() {

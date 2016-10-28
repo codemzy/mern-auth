@@ -41,6 +41,10 @@ router.get('/reset/:resetCode', Authentication.resetCheck);
 // take password data and set new password
 router.post('/password/reset', jsonParser, Authentication.resetpw);
 
+// CHANGE PASSWORD
+// take the old password and new password and update the password
+router.post('/password/change', jsonParser, Authentication.changepw);
+
 // USER INFO
 router.get('/info', requireAuth, function(req, res) {
     res.json({ email: req.user.email, emailConfirmed: req.user.emailConfirmed });
