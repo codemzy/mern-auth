@@ -13,6 +13,8 @@ let ObjectID = require('mongodb').ObjectID;
 
 // get email services
 const email = require('../services/sparkpost');
+// get compare password from passport
+const comparePassword = require('../services/passport').comparePassword;
 
 // get validation functions
 const validate = require('./validate');
@@ -370,12 +372,14 @@ exports.changepw = function(req, res, next) {
     if (EMAIL === NEW_PASSWORD) {
         return res.status(422).send({ error: 'Password must not match email address'});
     }
-    // hash old password to see if it matches stored hashed password
-    hashPassword(OLD_PASSWORD, function(err, oldHash) {
+    // compare old password to see if it matches stored hashed password
+    comparePassword(OLD_PASSWORD, req.user.password, function(err, isMatch) {
         if (err) {
             return next(err);
         }
-        if (oldHash === req.user.password) {
+        if (!isMatch) {
+            return res.status(422).send({ error: 'Incorrect existing password supplied'});
+        } else {
             // set the permissions date change
             const NOW = new Date().getTime();
             let permissions = {
@@ -397,10 +401,6 @@ exports.changepw = function(req, res, next) {
                     res.send({ success: "Password has been updated" });
                 });
             });
-            
-        } else {
-            // password supplied doesnt match so return error
-            return res.status(422).send({ error: 'Incorrect existing password supplied'});
         }
     });
 };

@@ -22,6 +22,8 @@ const comparePassword = function(suppliedPassword, userPassword, callback) {
         callback(null, isMatch);
     });
 };
+// export for use in authentication
+exports.comparePassword = comparePassword;
 
 // get db connection 
 const db = require('../server').db;
