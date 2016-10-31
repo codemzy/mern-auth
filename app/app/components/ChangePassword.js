@@ -68,29 +68,32 @@ class ChangePw extends React.Component {
         let newPasswordError = this.state.errors.newPassword ? <div className="has-error"><p className="help-block">{this.state.errors.newPassword}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
         return (
-            <div className="well">
-                <h2 className="page-title">Change Your Password</h2>
-                <form onSubmit={this._handleFormSubmit.bind(this)}>
-                    <div className="form-group">
-                      <label className="control-label" htmlFor="oldPassword">Current Password</label>
-                      <input className="form-control" id="oldPassword" ref="oldPassword" type="password" required/>
-                      {oldPasswordError}
-                    </div>
-                    <div className="form-group">
-                      <label className="control-label" htmlFor="password">New Password</label>
-                      <input className="form-control" id="password" ref="newPassword" type="password" required/>
-                      {newPasswordError}
-                    </div>
-                    <div className="form-group">
-                      <label className="control-label" htmlFor="confirm">Confirm New Password</label>
-                      <input className="form-control" id="confirm" ref="confirm" type="password" required/>
-                      {confirmError}
-                    </div>
-                    <div className="form-group">
-                        <br />
-                        <input className="btn btn-default btn-block" type="submit" value="Change Password" />
-                    </div>
-                </form>
+            <div className="panel panel-default text-left">
+                <div className="panel-heading">
+                    <h3 className="panel-title">Change password</h3>
+                </div>
+                <div className="panel-body">
+                    <form onSubmit={this._handleFormSubmit.bind(this)}>
+                        <div className="form-group">
+                          <label className="control-label" htmlFor="oldPassword">Current Password</label>
+                          <input className="form-control" id="oldPassword" ref="oldPassword" type="password" required/>
+                          {oldPasswordError}
+                        </div>
+                        <div className="form-group">
+                          <label className="control-label" htmlFor="password">New Password</label>
+                          <input className="form-control" id="password" ref="newPassword" type="password" required/>
+                          {newPasswordError}
+                        </div>
+                        <div className="form-group">
+                          <label className="control-label" htmlFor="confirm">Confirm New Password</label>
+                          <input className="form-control" id="confirm" ref="confirm" type="password" required/>
+                          {confirmError}
+                        </div>
+                        <div className="form-group text-center">
+                            <input className="btn btn-primary" type="submit" value="Change Password" />
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }
