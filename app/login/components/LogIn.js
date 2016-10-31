@@ -76,7 +76,7 @@ class LogIn extends React.Component {
                     </div>
                     <div className="form-group">
                         <br />
-                        <input className="btn btn-default btn-block" type="submit" value="Log In" />
+                        <input className="btn btn-primary btn-block" type="submit" value="Log In" />
                     </div>
                 </form>
                 <p><small><Link to="/login/forgotten" activeClassName="active">Forgot your password?</Link></small></p>

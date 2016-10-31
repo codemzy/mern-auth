@@ -94,7 +94,7 @@ class Register extends React.Component {
                     </div>
                     <div className="form-group">
                         <br />
-                        <input className="btn btn-default btn-block" type="submit" value="Log In" />
+                        <input className="btn btn-success btn-block" type="submit" value="Register" />
                     </div>
                 </form>
             </div>

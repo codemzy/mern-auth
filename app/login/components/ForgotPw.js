@@ -69,7 +69,7 @@ class ForgotPw extends React.Component {
                     </div>
                     <div className="form-group">
                         <br />
-                        <input className="btn btn-default btn-block" type="submit" value="New Password" />
+                        <input className="btn btn-info btn-block" type="submit" value="New Password" />
                     </div>
                 </form>
             </div>

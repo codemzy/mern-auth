@@ -113,7 +113,7 @@ class ResetPw extends React.Component {
                     </div>
                     <div className="form-group">
                         <br />
-                        <input className="btn btn-default btn-block" type="submit" value="Set New Password" />
+                        <input className="btn btn-info btn-block" type="submit" value="Set New Password" />
                     </div>
                 </form>
             </div>
