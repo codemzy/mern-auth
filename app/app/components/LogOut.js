@@ -29,9 +29,13 @@ class LogOut extends React.Component {
             return <div className="well"><Loading message="Logging out" /></div>;
         }
         return (
-            <div className="well">
-                <h3>Done what you came for?</h3>
-                <button className="btn btn-danger btn-lg" onClick={this._handleLogOut.bind(this)}><i className="fa fa-sign-out"></i> Log Out</button>
+            <div className="panel panel-default text-left">
+                <div className="panel-heading">
+                    <h3 className="panel-title">Log out</h3>
+                </div>
+                <div className="panel-body text-center">
+                    <button className="btn btn-danger" onClick={this._handleLogOut.bind(this)}><i className="fa fa-sign-out"></i> Log Out</button>
+                </div>
             </div>
         );
     }
