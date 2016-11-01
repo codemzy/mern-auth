@@ -12,8 +12,13 @@ class LogIn extends React.Component {
         super();
         this.state = {
             errors: {},
-            loading: false
+            loading: false,
+            alertMessage: false
         };
+    }
+    
+    _removeAlert() {
+        this.setState({ alertMessage: false });
     }
     
     _emailValid(email) {
@@ -39,7 +44,7 @@ class LogIn extends React.Component {
         });
         // if no errors then handle the form
         if (!ERRORS.email && !ERRORS.password) {
-            this.setState({ loading: true });
+            this.setState({ loading: true, alertMessage: false });
             this.refs.email.value = '';
             this.refs.password.value = '';
             // send the log in data
@@ -47,8 +52,10 @@ class LogIn extends React.Component {
                 .then((response) => {
                     window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
                 }, (error) => {
-                    console.log("Error logging in");
-                    this.setState({ loading: false });
+                    this.setState({ 
+                        loading: false, 
+                        alertMessage: "Sorry, your email address or password were incorrect. Please try again."
+                    });
                 });
         }
     }
@@ -58,6 +65,7 @@ class LogIn extends React.Component {
         if (this.state.loading) {
             return <Loading message="Logging in" />;
         }
+        let alertMessage = this.state.alertMessage ? <div className="alert alert-danger"><button type="button" className="close" onClick={this._removeAlert.bind(this)}>&times;</button><h4>Ooops!</h4>{this.state.alertMessage}</div>: false ;
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         return (
