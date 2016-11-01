@@ -97,6 +97,11 @@ const jwtOptions = {
 // Create JWT strategy
 // payload is the token (sub) and timestamp (iat)
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
+    // check if the token has expired
+    const NOW = new Date().getTime();
+    if (payload.exp < NOW) {
+        return done(null, false);
+    }
     // see if the user ID in the payload exists in our database
     // if it does call done with that user
     // otherwise call done without a user object
