@@ -59,7 +59,7 @@ class ForgotPw extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 {alertMessage}
-                <h1>Forgotten Password</h1>
+                <h1 className="page-title">Forgotten Password</h1>
                 <p>No worries. You can get access to your account by resetting your password via email. Enter the email address for your account below and we will send you instructions.</p>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
                     <div className="form-group">
