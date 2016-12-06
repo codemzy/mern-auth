@@ -74,7 +74,7 @@ class ResetPw extends React.Component {
             // send the reset pw data
             resetPassword(email, password, this.props.routeParams.token)
                 .then((response) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
+                    window.location.assign(window.location.protocol + "//" + window.location.host + "/app");
                 }, (error) => {
                     this.setState({ tokenValid: false, loading: false });
                 });

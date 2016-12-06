@@ -54,7 +54,7 @@ class Register extends React.Component {
             // send the registration data
             register(email, password)
                 .then((response) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
+                    window.location.assign(window.location.protocol + "//" + window.location.host + "/app");
                 }, (error) => {
                     this.setState({ 
                         loading: false,

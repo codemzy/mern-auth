@@ -5,7 +5,7 @@ class Nav extends React.Component {
     
     _linkToIndex(e) {
         e.preventDefault();
-        window.location = window.location.protocol + "//" + window.location.hostname + "/";
+        window.location = window.location.protocol + "//" + window.location.host + "/";
     }
     
     render() {
