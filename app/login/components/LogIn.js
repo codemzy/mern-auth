@@ -50,7 +50,7 @@ class LogIn extends React.Component {
             // send the log in data
             logIn(email, password)
                 .then((response) => {
-                    window.location.assign(window.location.protocol + "//" + window.location.hostname + "/app");
+                    window.location.assign(window.location.protocol + "//" + window.location.host + "/app");
                 }, (error) => {
                     this.setState({ 
                         loading: false, 

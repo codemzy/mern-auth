@@ -9,6 +9,7 @@ require('../services/passport.js'); // this needs to be run but is not directly 
 // check if user is auth'd, if not redirect
 const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect: '/login' });
 
+
 // ROUTES -----------------------------------------------------
 
 router.get('/', checkAuth, function(req, res) {

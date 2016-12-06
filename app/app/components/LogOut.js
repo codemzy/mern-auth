@@ -20,7 +20,7 @@ class LogOut extends React.Component {
         this.setState({ loading: true });
         this.props.dispatch(logOutUser())
             .then((response) => {
-                window.location = window.location.protocol + "//" + window.location.hostname + "/";
+                window.location = window.location.protocol + "//" + window.location.host + "/";
             });
     }
     
