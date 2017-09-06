@@ -1,9 +1,8 @@
 'use strict';
 
 const jwt = require('jwt-simple');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 
-require('dotenv').config({path: '../private/.env'});
 const secret = process.env.SECRET_STR;
 
 // get db connection 
@@ -41,7 +40,7 @@ function hashPassword(password, callback) {
             return callback(err);
         }
         // hash (encrypt) the password using the salt then run callback
-        bcrypt.hash(password, salt, null, function(err, hash) {
+        bcrypt.hash(password, salt, function(err, hash) {
             if (err) {
                 return callback(err);
             }

@@ -5,8 +5,8 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
 
-const bcrypt = require('bcrypt-nodejs');
-require('dotenv').config({path: '../private/.env'});
+const bcrypt = require('bcryptjs');
+
 const secret = process.env.SECRET_STR;
 
 // get lockout functions
