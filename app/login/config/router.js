@@ -1,6 +1,8 @@
 // Router set up
 var React = require('react');
-var {Route, Router, IndexRoute, browserHistory} = require('react-router');
+var {Route, Router, IndexRedirect, Redirect, browserHistory} = require('react-router');
+
+export const basePath = "/app";
 
 // Components
 var Main = require('../components/Main');
@@ -11,15 +13,15 @@ var Register = require('../components/Register');
 var Account = require('../components/Account');
 
 // Routes
-var routes = (
+const routes = (
     <Router history={browserHistory}> 
-        <Route path="/" component={Main}>
-            <IndexRoute component={LogIn} />
-            <Route path='/login' header='Log In' component={LogIn} />
-            <Route path='/login/forgotten' header='Forgotten Password' component={ForgotPw} />
-            <Route path='/login/forgotten/reset/:token' header='Reset Password' component={ForgotPwReset} />
-            <Route path='/login/register' header='Register' component={Register} />
-            <Route path='/login/account' header='Account' component={Account} />
+        <Route path={basePath} component={Main}>
+            <IndexRedirect to={basePath + '/login'} />
+            <Route path={basePath + '/login'} component={LogIn} />
+            <Route path={basePath + '/login/forgotten'} header='Forgotten Password' component={ForgotPw} />
+            <Route path={basePath + '/login/forgotten/reset/:token'} header='Reset Password' component={ForgotPwReset} />
+            <Route path={basePath + '/register'} header='Register' component={Register} />
+            <Redirect from="*" to={basePath + '/login'}  />
         </Route>
     </Router>
 );
