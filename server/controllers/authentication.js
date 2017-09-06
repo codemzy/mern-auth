@@ -230,24 +230,27 @@ exports.emailConfirm = function(req, res, next) {
 };
 
 exports.forgotpw = function(req, res, next) {
-    const EMAIL = req.body.email;
     // check if any data missing
-    if (!EMAIL || !validate.checkString(EMAIL) || !validate.checkEmail(EMAIL)) {
+    if (!req.body.email || !validate.checkString(req.body.email) || !validate.checkEmail(req.body.email)) {
         return res.status(422).send({ error: 'You must provide a valid email address'});
     }
+    // transform to lower case
+    const EMAIL = req.body.email.toLowerCase();
     // See if a user with the given email exists
     db.collection('users').findOne({ email: EMAIL }, function(err, existingUser) {
         if (err) {
             return next(err);
         }
-        if (existingUser.lockOut && existingUser.lockOut.lockedOut && lockout.checkLockOut(existingUser.lockOut.time)) {
-            // If a user with the email exists and they are locked out 
-            // they will have already had an a email advising no resets for 60 mins
-            return res.send({ message: 'Thank you. Please check your email.', code: 'lo' });
-        } else if (lockout.sentMailCheck('forgotPasswordEmail', existingUser.sentMail)) {
-            // If the forgotPasswordEmail has already been sent in last 10 mins
-            return res.send({ message: 'Thank you. Please check your email.', code: 'le' });
-        } else if (existingUser) {
+        if (existingUser) {
+            // check if they are locked out
+            if (existingUser.lockOut && existingUser.lockOut.lockedOut && lockout.checkLockOut(existingUser.lockOut.time)) {
+                // If a user with the email exists and they are locked out 
+                // they will have already had an a email advising no resets for 60 mins
+                return res.send({ message: 'Thank you. Please check your email.', code: 'lo' });
+            } else if (lockout.sentMailCheck('forgotPasswordEmail', existingUser.sentMail)) {
+                // If the forgotPasswordEmail has already been sent in last 10 mins
+                return res.send({ message: 'Thank you. Please check your email.', code: 'le' });
+            }
             // If a user with the email exists and they are not locked out, send an email with a reset password link
             // link expires after an hour, add a token to the user in the DB and this needs to match the token and email and not be expired
             // create linkCode for pw reset
