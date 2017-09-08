@@ -1,34 +1,22 @@
 const webpack = require('webpack');
 
 // change to development or production
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 
 module.exports = {
     entry: {
         login: './app/login/app.js',
         app: './app/app/app.js',
         common: [
-            'script!jquery/dist/jquery.min.js',
-            'script!bootstrap/dist/js/bootstrap.min.js'
+            'script-loader!jquery/dist/jquery.min.js',
+            'script-loader!bootstrap/dist/js/bootstrap.min.js'
             ]
     },
-    externals: {
-        jquery: 'jQuery'
-    },
     plugins: [
-        new webpack.ProvidePlugin({
-            '$': 'jquery',
-            'jQuery': 'jquery'
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compressor: {
                 warnings: false
             }
-        }),
-        new webpack.DefinePlugin({
-          'process.env':{
-            'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-          }
         })
     ],
     output: {
@@ -36,21 +24,21 @@ module.exports = {
         filename: './public/js/[name].bundle.js'
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
     module: {
-        loaders: [
+        rules: [
             {
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015', 'stage-0']
-                },
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/
-            },
-            { test: /\.css$/, loader: "style-loader!css-loader" },
-            { test: /\.scss$/, loader: "style-loader!css-loader!sass-loader" }
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['react', 'es2015', 'stage-0']
+                    }
+                }
+            }
         ]
     },
-    devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
+    devtool: process.env.NODE_ENV === 'production' ? 'nosources-source-map' : 'cheap-module-eval-source-map'
 };
