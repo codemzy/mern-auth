@@ -18,7 +18,7 @@ const checkUserAuth = function(req, res) {
         }
         if (user) {
             // they are auth'd and can access the app
-            return res.sendFile(process.cwd() + '/public/html/app.html');
+            return res.sendFile(process.cwd() + '/public/html/account.html');
         } else {
             // no user so need to login
             // clear the user object on the req and the cookie (if expired one held)

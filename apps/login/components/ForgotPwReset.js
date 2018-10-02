@@ -6,6 +6,7 @@ import { resetPassword } from '../api/user';
 
 // components
 import Loading from './Loading.js';
+import Wrap from './Wrap.js';
 
 class ResetPw extends React.Component {
     constructor() {
@@ -92,7 +93,7 @@ class ResetPw extends React.Component {
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <Wrap>
                 { alertMessage }
                 <h1 className="page-title">Reset Your Password</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
@@ -116,7 +117,7 @@ class ResetPw extends React.Component {
                         <input className="btn btn-info btn-block" type="submit" value="Set New Password" />
                     </div>
                 </form>
-            </div>
+            </Wrap>
         );
     }
 }

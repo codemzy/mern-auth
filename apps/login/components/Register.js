@@ -5,6 +5,7 @@ import { register } from '../api/user';
 
 // components
 import Loading from './Loading.js';
+import Wrap from './Wrap.js';
 
 class Register extends React.Component {
     constructor() {
@@ -73,7 +74,7 @@ class Register extends React.Component {
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
         let alertMessage = this.state.alertMessage ? <div className="alert alert-dismissible alert-danger">{this.state.alertMessage}</div>: false ;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <Wrap>
                 {alertMessage}
                 <h1 className="page-title">Register</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
@@ -97,7 +98,7 @@ class Register extends React.Component {
                         <input className="btn btn-success btn-block" type="submit" value="Register" />
                     </div>
                 </form>
-            </div>
+            </Wrap>
         );
     }
 }

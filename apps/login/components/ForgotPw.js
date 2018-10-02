@@ -5,6 +5,7 @@ import { forgotPassword } from '../api/user';
 
 // components
 import Loading from './Loading.js';
+import Wrap from './Wrap.js';
 
 class ForgotPw extends React.Component {
     constructor() {
@@ -57,7 +58,7 @@ class ForgotPw extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let alertMessage = this.state.alertMessage ? <div className="alert alert-dismissible alert-info">{this.state.alertMessage}</div>: false ;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <Wrap>
                 {alertMessage}
                 <h1 className="page-title">Forgotten Password</h1>
                 <p>No worries. You can get access to your account by resetting your password via email. Enter the email address for your account below and we will send you instructions.</p>
@@ -72,7 +73,7 @@ class ForgotPw extends React.Component {
                         <input className="btn btn-info btn-block" type="submit" value="New Password" />
                     </div>
                 </form>
-            </div>
+            </Wrap>
         );
     }
 }

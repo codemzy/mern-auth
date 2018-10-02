@@ -1,6 +1,6 @@
 {
   "name": "auth-mern-jwt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Full Stack Auth with MERN and JWT Tokens",
   "main": "server/server.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "~0.14.0",
+    "babel-polyfill": "~6.26.0",
     "bcryptjs": "~2.4.3",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
@@ -39,8 +40,6 @@
     "babel-preset-es2015": "~6.24.1",
     "babel-preset-react": "~6.24.1",
     "babel-preset-stage-0": "~6.24.1",
-    "bootstrap": "~3.3.6",
-    "jquery": "~2.2.1",
     "script-loader": "~0.7.0",
     "webpack": "~3.5.6"
   },
