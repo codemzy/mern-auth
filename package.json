@@ -1,6 +1,6 @@
 {
   "name": "auth-mern-jwt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Full Stack Auth with MERN and JWT Tokens",
   "main": "server/server.js",
   "scripts": {
