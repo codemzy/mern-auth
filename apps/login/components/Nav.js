@@ -3,6 +3,9 @@ var {Link, IndexLink} = require('react-router');
 
 import { basePath } from '../config/router';
 
+// components
+import Wrap from './Wrap.js';
+
 class Nav extends React.Component {
     
     _linkToIndex(e) {
@@ -12,8 +15,8 @@ class Nav extends React.Component {
     
     render() {
         return (
-                <div className="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                    <ul className="nav nav-tabs">
+                <Wrap>
+                    <ul className="nav nav-tabs mb-5">
                       <li className="nav-item">
                             <IndexLink to={basePath + "/login"} className="nav-link" activeClassName="active">Log In</IndexLink>
                       </li>
@@ -24,7 +27,7 @@ class Nav extends React.Component {
                             <Link to={basePath + "/register"} className="nav-link" activeClassName="active">Register</Link>
                       </li>
                     </ul>
-                </div>
+                </Wrap>
         );
     }
 }

@@ -6,6 +6,7 @@ import { logIn } from '../api/user';
 
 // components
 import Loading from './Loading.js';
+import Wrap from './Wrap.js';
 
 class LogIn extends React.Component {
     constructor() {
@@ -69,7 +70,7 @@ class LogIn extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         return (
-            <div className="col-md-6 offset-md-3">
+            <Wrap>
                 {alertMessage}
                 <h1 className="page-title">Log In</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>
@@ -89,7 +90,7 @@ class LogIn extends React.Component {
                     </div>
                 </form>
                 <p><small><Link to="/login/forgotten" activeClassName="active">Forgot your password?</Link></small></p>
-                </div>
+            </Wrap>
         );
     }
 }
