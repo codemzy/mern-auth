@@ -1,24 +1,10 @@
 const webpack = require('webpack');
 
-// change to development or production
-process.env.NODE_ENV = 'development';
-
 module.exports = {
     entry: {
-        login: './app/login/app.js',
-        app: './app/app/app.js',
-        common: [
-            'script-loader!jquery/dist/jquery.min.js',
-            'script-loader!bootstrap/dist/js/bootstrap.min.js'
-            ]
+        account: ["babel-polyfill", './apps/account/app.js'],
+        login: ["babel-polyfill", './apps/login/app.js']
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
-        })
-    ],
     output: {
         path: __dirname,
         filename: './public/js/[name].bundle.js'
