@@ -92,7 +92,7 @@ class ResetPw extends React.Component {
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         let confirmError = this.state.errors.confirm ? <div className="has-error"><p className="help-block">{this.state.errors.confirm}</p></div> : false ;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-md-6 offset-md-3">
                 { alertMessage }
                 <h1 className="page-title">Reset Your Password</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>

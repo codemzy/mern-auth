@@ -69,7 +69,7 @@ class LogIn extends React.Component {
         let emailError = this.state.errors.email ? <div className="has-error"><p className="help-block">{this.state.errors.email}</p></div> : false ;
         let passwordError = this.state.errors.password ? <div className="has-error"><p className="help-block">{this.state.errors.password}</p></div> : false ;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-md-6 offset-md-3">
                 {alertMessage}
                 <h1 className="page-title">Log In</h1>
                 <form onSubmit={this._handleFormSubmit.bind(this)}>

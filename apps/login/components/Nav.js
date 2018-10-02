@@ -12,16 +12,16 @@ class Nav extends React.Component {
     
     render() {
         return (
-                <div className="col-md-6 col-md-offset-3">
+                <div className="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                     <ul className="nav nav-tabs">
-                      <li role="presentation">
-                            <IndexLink to={basePath + "/login"} activeClassName="nav-active">Log In</IndexLink>
+                      <li className="nav-item">
+                            <IndexLink to={basePath + "/login"} className="nav-link" activeClassName="active">Log In</IndexLink>
                       </li>
-                      <li role="presentation">
-                            <Link to={basePath + "/login/forgotten"} activeClassName="nav-active">Forgotten Password</Link>
+                      <li className="nav-item">
+                            <Link to={basePath + "/login/forgotten"} className="nav-link" activeClassName="active">Forgotten</Link>
                       </li>
-                      <li role="presentation">
-                            <Link to={basePath + "/register"} activeClassName="nav-active">Register</Link>
+                      <li className="nav-item">
+                            <Link to={basePath + "/register"} className="nav-link" activeClassName="active">Register</Link>
                       </li>
                     </ul>
                 </div>
