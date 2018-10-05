@@ -8,6 +8,11 @@ const APP_NAME = 'My App';
 const APP_URL = 'https://www.myapp.com';
 const APP_EMAIL = 'testing@sparkpostbox.com';
 
+const OPTIONS = { 
+  "sandbox": true, // for testing
+  "transactional": true
+};
+
 exports.welcomeEmail = function (email, emailConfirmCode) {
  
     sp.transmissions.send({
