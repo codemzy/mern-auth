@@ -12,6 +12,7 @@ let ObjectID = require('mongodb').ObjectID;
 
 // get email services
 const email = require('../services/sparkpost');
+const emailService = require('../services/email');
 // get compare password from passport
 const comparePassword = require('../services/passport').comparePassword;
 
@@ -136,7 +137,7 @@ exports.signup = function(req, res, next) {
                     return next(err);
                 }
                 // Send a welcome email
-                email.welcomeEmail(EMAIL, emailConfirmCode);
+                emailService.welcomeEmail(EMAIL, emailConfirmCode);
                 // Respond to request indicating the user was created
                 const USER_TOKEN = tokenForUser({ id: result.insertedId });
                 res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
