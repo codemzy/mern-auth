@@ -121,7 +121,7 @@ exports.signup = function(req, res, next) {
                     return next(err);
                 }
                 // Send a welcome email
-                emailService.welcomeEmail(email, newUser.emailConfirmCode);
+                emailService.welcomeEmail(email, newUser.emailConfirmCode.split("-")[1]);
                 // Respond to request indicating the user was created
                 const USER_TOKEN = tokenForUser({ id: result.insertedId });
                 res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
