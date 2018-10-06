@@ -86,30 +86,16 @@ function checkCodeTime(linkCode) {
 }
 
 exports.signup = function(req, res, next) {
-    const EMAIL = req.body.email;
-    const PASSWORD = req.body.password;
-    // check if any data missing
-    if (!EMAIL || !PASSWORD) {
-        return res.status(422).send({ error: 'You must provide email and password'});
-    }
-    // check if email is a string and a valid email format
-    if (!validate.checkString(EMAIL) || !validate.checkEmail(EMAIL)) {
-        return res.status(422).send({ error: 'Email is not valid'});
-    }
-    // check if password is a string
-    if (!validate.checkString(PASSWORD)) {
-        return res.status(422).send({ error: 'Password is not valid'});
-    }
-    // check if password is long enough
-    if (!validate.checkPasswordLength(PASSWORD)) {
-        return res.status(422).send({ error: 'Password is too short'});
-    }
-    // check if password and email match each other
-    if (EMAIL === PASSWORD) {
+    // validate details supplied
+    const email = validate.checkString(req.body.email) && validate.checkEmail(req.body.email) ? req.body.email.toLowerCase() : false ;
+    const password = validate.checkString(req.body.password) && validate.checkPasswordLength(req.body.password) ? req.body.password : false ;
+    if (!email || !password) {
+        return res.status(422).send({ error: 'Registration form data is invalid' });
+    } else if (email === password) {
         return res.status(422).send({ error: 'Password must not match email address'});
     }
     // See if a user with the given email exists
-    db.collection('users').findOne({ email: EMAIL }, function(err, existingUser) {
+    db.collection('users').findOne({ email: email }, function(err, existingUser) {
         if (err) {
             return next(err);
         }
@@ -118,26 +104,24 @@ exports.signup = function(req, res, next) {
             return res.status(422).send({ error: 'Email is in use'});
         }
         // If a user with email does not exist, hash passord
-        hashPassword(PASSWORD, function(err, hash) {
+        hashPassword(password, function(err, hash) {
             if (err) {
                 return next(err);
             }
-            // create email confirm code
-            const emailConfirmCode = createLinkCode("ecc");
             // create and save user record
-            const USER = {
-                email: EMAIL,
+            const newUser = {
+                email: email,
                 password: hash,
                 emailConfirmed: false,
-                emailConfirmCode: emailConfirmCode
+                emailConfirmCode: createLinkCode("ecc") // create email confirm code
             };
             // save the user we just created
-            db.collection('users').insertOne(USER, function(err, result) {
+            db.collection('users').insertOne(newUser, function(err, result) {
                 if (err) {
                     return next(err);
                 }
                 // Send a welcome email
-                emailService.welcomeEmail(EMAIL, emailConfirmCode);
+                emailService.welcomeEmail(email, newUser.emailConfirmCode);
                 // Respond to request indicating the user was created
                 const USER_TOKEN = tokenForUser({ id: result.insertedId });
                 res.cookie('jwt', USER_TOKEN, { maxAge: MAX_AGE, httpOnly: true, secure: true });
