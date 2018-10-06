@@ -182,36 +182,35 @@ exports.emailCode = function(req, res, next) {
 };
 
 exports.emailConfirm = function(req, res, next) {
-    const EMAIL_CODE = req.params.emailCode;
+    const submittedCode = req.body.emailCode;
+    // check valid string and num
+    if (!submittedCode || submittedCode.length > 5 || !validate.checkString(submittedCode)) {
+        return res.status(422).send({ error: 'Invalid code'});
+    }
     // User is already signed in so we just need to check the emailToken matches their token
     const USER_ID = req.user._id;
+    const EMAIL_CODE = req.user.emailConfirmCode;
     // Check ecc is valid
     const timeLeft = checkCodeTime(EMAIL_CODE);
     // if token expired
     if (!timeLeft) {
         return res.status(422).send({ error: 'Invalid link'});
     }
-    // See if a user with the id exists
-    let obj_id = new ObjectID(USER_ID);
-    db.collection('users').findOne({ _id: obj_id }, function(err, existingUser) {
-        if (err) {
-            return next(err);
-        }
-        // If the email link does match, update the DB to confirm the email
-        if (existingUser.emailConfirmCode === EMAIL_CODE) {
-            // update to db
-            db.collection('users').updateOne({ _id: obj_id }, { $set: { "emailConfirmed" : true }, $unset: { "emailConfirmCode": "" } }, function(err, updated) {
-                if (err) {
-                    return next(err);
-                }
-                // Respond to request as email is confirmed
-                return res.json({ message: 'Email confirmed', timeleft: timeLeft });
-            });
-        } else {
-            // either the user doesnt exist or the code doesn't match so link is invalid
-            return res.status(422).send({ error: 'Invalid link'});
-        }
-    });
+    // check code matches
+    if (submittedCode === EMAIL_CODE.split("-")[1]) {
+        let obj_id = new ObjectID(USER_ID);
+        // update to db
+        db.collection('users').updateOne({ _id: obj_id }, { $set: { "emailConfirmed" : true }, $unset: { "emailConfirmCode": "" } }, function(err, updated) {
+            if (err) {
+                return next(err);
+            }
+            // Respond to request as email is confirmed
+            return res.json({ message: 'Email confirmed', timeleft: timeLeft });
+        });
+    } else {
+        // code doesnt match
+        return res.status(422).send({ error: 'Invalid link'});
+    }
 };
 
 exports.forgotpw = function(req, res, next) {
