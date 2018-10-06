@@ -175,7 +175,7 @@ exports.emailCode = function(req, res, next) {
             return next(err);
         }
         // Send a email confirm code email
-        email.confirmEmail(EMAIL, emailConfirmCode);
+        emailService.confirmEmail(EMAIL, emailConfirmCode.split("-")[1]);
         // Respond to request indicating the email confirm code was sent
         res.json({ message: 'Thank you. Please check your email.', code: 'es' });
     });
